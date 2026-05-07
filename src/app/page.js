@@ -4,8 +4,9 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { Moon, Sun, Users, Clipboard, Check, Zap, Globe } from 'lucide-react';
 
-const socket = io(process.env.BACKEND_URI, {
+const socket = io(process.env.NEXT_PUBLIC_BACKEND_URI, {
   autoConnect: false,
+  transports: ['websocket', 'polling']
 });
 
 const Page = () => {
