@@ -12,11 +12,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  
   title: 'LivePaste | Fastest Real-Time Text Sharing',
   description: 'Share text and code snippets instantly between devices with a simple 5-digit code. No login required.',
-  keywords: 'copy paste online, real-time text sharing, live clipboard, sync text',
+  keywords: 'instant text sharing, 5-digit code text transfer, anonymous code sharing, private pastebin alternative, real-time clipboard sync, no login text share, cross-device copy paste',
+
+  openGraph: {
+    title: 'LivePaste | Instant Text Sharing',
+    description: 'Sync text across devices in seconds using a simple code.',
+    url: 'https://copy-paste-frontend-one.vercel.app',
+    siteName: 'LivePaste',
+    type: 'website',
+  },
 };
+
 
 export default function RootLayout({ children }) {
   return (
