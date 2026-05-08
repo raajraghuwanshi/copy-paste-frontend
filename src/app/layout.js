@@ -16,9 +16,6 @@ export const metadata = {
   title: 'LivePaste | Fastest Real-Time Text Sharing',
   description: 'Share text and code snippets instantly between devices with a simple 5-digit code. No login required.',
   keywords: 'copy paste online, real-time text sharing, live clipboard, sync text',
-  verification: {
-    google: 'google1d93dd9f67f80839.html',
-  },
 };
 
 export default function RootLayout({ children }) {
