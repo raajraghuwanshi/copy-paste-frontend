@@ -1,25 +1,329 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- base surfaces --- */
+  --page-bg: #F0F4F8;
+  --panel-white: #FFFFFF;
+  --panel-tint-blue: #E8F0FE;
+  --grid-dot: #DCE6F5;
+
+  /* --- brand navy (primary) --- */
+  --navy: #2A5BA7;
+  --navy-ink: #2F4C7A;
+
+  /* --- sync-stack accent blues --- */
+  --stack-blue-1: #438EFF;
+  --stack-blue-2: #7EB2FF;
+
+  /* --- rule lines / structure --- */
+  --rule-line: #E4EAF2;
+
+  /* --- sticky note ("Pro Tip") --- */
+  --note-yellow: #FEF9C3;
+  --note-gold-bar: #FAE261;
+  --note-gold-fold: #EAB308;
+  --note-pin: #E8C874;
+  --note-heading-navy: #2A5BA7;
+  --note-body-ink: #5B7CA8;
+
+  /* --- radii --- */
+  --radius-card: 20px;
+  --radius-pill: 999px;
+  --radius-input: 10px;
+
+  --label-slate: #7C8CA6;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: white;
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: var(--page-bg);
+  font-family: var(--font-quicksand), 'Quicksand', system-ui, sans-serif;
+  color: var(--navy);
+  min-height: 100vh;
+}
+
+.font-handwriting {
+  font-family: var(--font-kalam), 'Kalam', cursive;
+}
+
+.font-ui {
+  font-family: var(--font-quicksand), 'Quicksand', system-ui, sans-serif;
+}
+
+/* ---- Room controls card (Ticket Stub Perforation) ---- */
+.room-card {
+  position: relative;
+  background: var(--panel-tint-blue);
+  border-radius: var(--radius-card);
+  border: 2px dashed var(--navy);
+  padding: 14px;
+  overflow: visible;
+}
+
+.room-card::before,
+.room-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--page-bg);
+  border: 2px solid var(--navy);
+}
+
+.room-card::before {
+  left: -9px;
+}
+
+.room-card::after {
+  right: -9px;
+}
+
+/* ---- Graph paper dot-grid visual ---- */
+.dot-grid-bg {
+  background-color: var(--page-bg);
+  background-image: radial-gradient(var(--grid-dot) 1.4px, transparent 1.4px);
+  background-size: 16px 16px;
+}
+
+/* ---- Isometric Stack visual ---- */
+.stack-visual {
+  height: 75px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheets {
+  position: relative;
+  width: 56px;
+  height: 42px;
+}
+
+.sheets div {
+  position: absolute;
+  width: 56px;
+  height: 38px;
+  border-radius: 5px;
+  box-shadow: 0 4px 10px rgba(42, 91, 167, 0.22);
+  transition: all 0.3s ease;
+}
+
+.sheets div:nth-child(1) {
+  top: 10px;
+  left: 10px;
+  background: var(--stack-blue-2);
+}
+
+.sheets div:nth-child(2) {
+  top: 5px;
+  left: 5px;
+  background: linear-gradient(135deg, var(--stack-blue-1), var(--stack-blue-2));
+}
+
+.sheets div:nth-child(3) {
+  top: 0;
+  left: 0;
+  background: var(--stack-blue-1);
+}
+
+/* ---- Sticky "Pro Tip" note ---- */
+.sticky-note {
+  position: relative;
+  background: var(--note-yellow);
+  border-left: 6px solid var(--note-gold-bar);
+  border-radius: 4px 10px 10px 4px;
+  padding: 22px 26px 26px 22px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.sticky-note .fold {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 22px 22px;
+  border-color: transparent transparent var(--note-gold-fold) transparent;
+  border-bottom-right-radius: 10px;
+}
+
+/* ---- Notebook Page Ruled Lines & Margin ---- */
+.notebook-page {
+  position: relative;
+  padding-left: 34px;
+  background-color: var(--panel-white);
+  /* 48px baseline grid lines matching Kalam font line-height */
+  background-image: linear-gradient(to bottom, transparent 47px, var(--rule-line) 47px);
+  background-size: 100% 48px;
+}
+
+/* Vertical red/tan margin line */
+.notebook-page::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #EEE3C9;
+  z-index: 1;
+}
+
+/* Notebook hole punches down left margin */
+.hole-punch-column {
+  position: absolute;
+  left: -28px;
+  top: 0;
+  bottom: 0;
+  width: 12px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hole-punch {
+  position: absolute;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid #D7DEE9;
+  background: var(--panel-white);
+}
+
+/* Custom scrollbar for handwriting area */
+textarea::-webkit-scrollbar {
+  width: 6px;
+}
+textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+textarea::-webkit-scrollbar-thumb {
+  background: #CBD9F2;
+  border-radius: 4px;
+}
+
+/* ---- Chrome-Style Stationery Tabs ---- */
+.chrome-tab-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 6px;
+  background: var(--page-bg);
+  padding: 6px 10px 0 10px;
+  border-bottom: 2px solid #D5E1F7;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.chrome-tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.chrome-tab {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px 12px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--label-slate);
+  background: var(--panel-tint-blue);
+  border: 1.5px solid #CBD9F2;
+  border-bottom: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  max-width: 170px;
+  min-width: 100px;
+  flex-shrink: 0;
+}
+
+.chrome-tab:hover {
+  background: #D8E5FC;
+  color: var(--navy);
+  transform: translateY(-1px);
+}
+
+/* Highlighted Active Tab */
+.chrome-tab.active {
+  background: var(--panel-white);
+  color: var(--navy);
+  border-color: #A9C2EE;
+  border-top: 3px solid var(--navy) !important;
+  border-bottom: 2px solid var(--panel-white);
+  margin-bottom: -2px;
+  box-shadow: 0 -4px 10px rgba(42, 91, 167, 0.16);
+  z-index: 5;
+  font-weight: 800;
+  transform: translateY(0);
+}
+
+.chrome-tab.active::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--navy);
+  border-radius: 12px 12px 0 0;
+}
+
+.chrome-tab-close {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #7C8CA6;
+  opacity: 0.75;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.chrome-tab-close:hover {
+  background: #FEE2E2;
+  color: #DC2626;
+  opacity: 1;
+}
+
+.chrome-tab-add {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #E8F0FE;
+  color: var(--navy);
+  border: 1.5px solid #CBD9F2;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 3px;
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+
+.chrome-tab-add:hover {
+  background: var(--navy);
+  color: #ffffff;
+  border-color: var(--navy);
+  transform: scale(1.05);
 }
