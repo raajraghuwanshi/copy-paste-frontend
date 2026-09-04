@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { io } from 'socket.io-client';
 import { 
   Share2, Clipboard, Check, Bold, List, Link as LinkIcon, ArrowRight, Pin, 
@@ -474,15 +475,24 @@ const Page = () => {
             </div>
           </div>
 
-          {/* Mobile Sidebar Toggle Button */}
-          <button
-            onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-            className="lg:hidden flex items-center gap-1.5 min-h-[44px] px-3.5 bg-white border border-[#CBD9F2] rounded-[10px] text-[#2A5BA7] text-[12px] font-bold shadow-sm"
-          >
-            <QrCode size={15} />
-            <span>Room & QR</span>
-            {mobileSidebarOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
-          </button>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/about"
+              className="text-[12px] font-bold text-[#2A5BA7] bg-white border border-[#CBD9F2] hover:bg-[#E8F0FE] px-3 py-1.5 rounded-[10px] transition-colors shadow-sm hidden sm:inline-block"
+            >
+              About & SEO Info
+            </Link>
+
+            {/* Mobile Sidebar Toggle Button */}
+            <button
+              onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+              className="lg:hidden flex items-center gap-1.5 min-h-[44px] px-3.5 bg-white border border-[#CBD9F2] rounded-[10px] text-[#2A5BA7] text-[12px] font-bold shadow-sm"
+            >
+              <QrCode size={15} />
+              <span>Room & QR</span>
+              {mobileSidebarOpen ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
+            </button>
+          </div>
         </header>
 
         {/* Sidebar Column */}
@@ -753,6 +763,8 @@ const Page = () => {
                 ) : (
                   <span>DRAFT MODE — CONNECT ROOM TO SYNC</span>
                 )}
+                <span className="opacity-40">|</span>
+                <Link href="/about" className="hover:underline text-[#2A5BA7]">ABOUT & SEO</Link>
                 <span className="opacity-40">|</span>
                 <span>ENCRYPTED AES-256</span>
               </span>

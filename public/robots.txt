@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://copy-paste-frontend-one.vercel.app
+Sitemap: https://copy-paste-tan.vercel.app
