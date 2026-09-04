@@ -14,51 +14,15 @@ const kalam = Kalam({
 });
 
 export const metadata = {
-  metadataBase: new URL('https://copy-paste-tan.vercel.app'),
-  title: {
-    default: 'LivePaste | Real-Time Stationery Sync & Instant Text Sharing',
-    template: '%s | LivePaste',
-  },
-  description: 'Share text, code snippets, and notes instantly across phones, tablets, and computers using a simple 5-digit room code with real-time stationery notebook sync.',
-  keywords: [
-    'livepaste', 'instant text sharing', 'notebook UI', 'stationery sync', 
-    'real-time pastebin', '5-digit room code text transfer', 'cross-device clipboard', 
-    'online notepad', 'temporary text share'
-  ],
-  authors: [{ name: 'LivePaste Team' }],
-  creator: 'LivePaste',
-  publisher: 'LivePaste',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  alternates: {
-    canonical: 'https://copy-paste-tan.vercel.app',
-  },
+  title: 'LivePaste',
+  description: 'Share text and notes instantly across devices with stationery notebook aesthetics and a 5-digit room code.',
+  keywords: 'livepaste, instant text sharing, notebook UI, stationery sync, real-time pastebin, 5-digit code text transfer',
   openGraph: {
-    title: 'LivePaste | Real-Time Stationery Sync & Instant Text Sharing',
-    description: 'Sync text across devices in seconds using a simple 5-digit room code in a tactile notebook interface.',
+    title: 'LivePaste',
+    description: 'Sync text across devices in seconds using a simple code in a tactile notebook interface.',
     url: 'https://copy-paste-tan.vercel.app',
     siteName: 'LivePaste',
-    locale: 'en_US',
     type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'LivePaste | Real-Time Text Sync',
-    description: 'Instant cross-device text sharing with 5-digit room code.',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
   },
 };
 
