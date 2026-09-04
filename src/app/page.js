@@ -3,8 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { io } from 'socket.io-client';
-import { 
-  Share2, Clipboard, Check, Bold, List, Link as LinkIcon, ArrowRight, Pin, 
+import {
+  Share2, Clipboard, Check, Bold, List, Link as LinkIcon, ArrowRight, Pin,
   QrCode, Plus, X, FileText, Lock, Unlock, ShieldAlert, ChevronDown, ChevronUp, RefreshCw
 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
@@ -323,7 +323,7 @@ const Page = () => {
         if (Array.isArray(parsed) && parsed.length > 0) {
           setTabs(parsed);
         }
-      } catch (e) {}
+      } catch (e) { }
     }
 
     socket.emit('join', code);
@@ -404,8 +404,8 @@ const Page = () => {
   };
 
   const copyLinkToClipboard = async () => {
-    const currentOrigin = typeof window !== 'undefined' && window.location.origin 
-      ? window.location.origin 
+    const currentOrigin = typeof window !== 'undefined' && window.location.origin
+      ? window.location.origin
       : originUrl || 'http://localhost:3000';
     const urlToCopy = `${currentOrigin}?room=${code}`;
     const success = await performCopy(urlToCopy);
@@ -428,7 +428,7 @@ const Page = () => {
 
   return (
     <div className="app-viewport bg-[#F0F4F8] text-[#2A5BA7] p-2.5 sm:p-4 font-ui selection:bg-[#E8F0FE] flex flex-col relative overflow-hidden">
-      
+
       {/* Join Denied Modal Overlay */}
       {joinDeniedReason && (
         <div className="fixed inset-0 z-50 bg-[#1E293B]/60 backdrop-blur-sm flex items-center justify-center p-4">
@@ -462,7 +462,7 @@ const Page = () => {
       )}
 
       <div className="max-w-[1240px] w-full mx-auto flex-1 grid grid-cols-1 lg:grid-cols-[290px_1fr] grid-rows-[auto_1fr] gap-[10px] sm:gap-[14px] overflow-hidden">
-        
+
         {/* Brand Header */}
         <header className="lg:col-span-2 flex items-center justify-between shrink-0 py-0.5">
           <div className="flex items-center gap-2.5">
@@ -471,7 +471,7 @@ const Page = () => {
             </div>
             <div>
               <h1 className="m-0 text-[18px] font-bold text-[#2A5BA7] leading-tight">LivePaste</h1>
-              <p className="m-0 text-[11px] font-semibold text-[#7C8CA6]">Real-time Stationery Sync</p>
+              <p className="m-0 text-[11px] font-semibold text-[#7C8CA6]">Real-time Sync</p>
             </div>
           </div>
 
@@ -480,7 +480,7 @@ const Page = () => {
               href="/about"
               className="text-[12px] font-bold text-[#2A5BA7] bg-white border border-[#CBD9F2] hover:bg-[#E8F0FE] px-3 py-1.5 rounded-[10px] transition-colors shadow-sm hidden sm:inline-block"
             >
-              About & SEO Info
+              About
             </Link>
 
             {/* Mobile Sidebar Toggle Button */}
@@ -496,10 +496,9 @@ const Page = () => {
         </header>
 
         {/* Sidebar Column */}
-        <aside className={`flex flex-col gap-2.5 justify-between h-full overflow-y-auto px-1 ${
-          mobileSidebarOpen ? 'block' : 'hidden lg:flex'
-        }`}>
-          
+        <aside className={`flex flex-col gap-2.5 justify-between h-full overflow-y-auto px-1 ${mobileSidebarOpen ? 'block' : 'hidden lg:flex'
+          }`}>
+
           {/* Room Controls Card */}
           <div className="room-card !p-3">
             <div className="flex items-center justify-between mb-2">
@@ -510,11 +509,10 @@ const Page = () => {
                 <button
                   onClick={handleToggleLock}
                   title={isLocked ? 'Unlock Room' : 'Lock Room'}
-                  className={`px-2 py-0.5 rounded-full text-[9.5px] font-bold border transition-colors flex items-center gap-1 cursor-pointer min-h-[30px] ${
-                    isLocked
+                  className={`px-2 py-0.5 rounded-full text-[9.5px] font-bold border transition-colors flex items-center gap-1 cursor-pointer min-h-[30px] ${isLocked
                       ? 'bg-[#FEE2E2] text-[#DC2626] border-[#FCA5A5]'
                       : 'bg-[#DCFCE7] text-[#166534] border-[#86EFAC]'
-                  }`}
+                    }`}
                 >
                   {isLocked ? <Lock size={11} /> : <Unlock size={11} />}
                   {isLocked ? 'Locked' : 'Lock Room'}
@@ -561,11 +559,10 @@ const Page = () => {
                     <Lock size={10} /> Locked
                   </span>
                 )}
-                <span className={`text-[9.5px] font-bold tracking-[0.03em] px-2.5 py-0.5 rounded-full border-[1.5px] ${
-                  isJoined 
-                    ? 'bg-white text-[#2A5BA7] border-[#2A5BA7]' 
+                <span className={`text-[9.5px] font-bold tracking-[0.03em] px-2.5 py-0.5 rounded-full border-[1.5px] ${isJoined
+                    ? 'bg-white text-[#2A5BA7] border-[#2A5BA7]'
                     : 'bg-[#E8F0FE] text-[#7C8CA6] border-[#CBD9F2]'
-                }`}>
+                  }`}>
                   {isJoined ? (isCreator ? 'Owner' : 'Connected') : 'Draft Mode'}
                 </span>
               </div>
@@ -585,19 +582,19 @@ const Page = () => {
                 {linkCopied ? 'Copied!' : 'Copy Link'}
               </button>
             </div>
-            
+
             <div className="w-full h-[85px] rounded-[12px] dot-grid-bg flex items-center justify-center relative overflow-hidden border border-[#E8F0FE]">
               <div className="bg-white rounded-[10px] p-1.5 flex items-center justify-center shadow-sm border border-[#CBD9F2]">
-                <QRCodeSVG 
-                  value={shareableUrl} 
-                  size={58} 
-                  fgColor="#2A5BA7" 
+                <QRCodeSVG
+                  value={shareableUrl}
+                  size={58}
+                  fgColor="#2A5BA7"
                   bgColor="#FFFFFF"
                   level="L"
                 />
               </div>
             </div>
-            
+
             <p className="text-[9.5px] text-[#7C8CA6] mt-1.5 mb-0 leading-[1.3] text-center font-semibold">
               Scan with phone to auto-open Room #{code || '—'}
             </p>
@@ -623,7 +620,7 @@ const Page = () => {
 
         {/* Notebook Main Panel */}
         <main className="bg-white rounded-[20px] flex flex-col border border-[#EEF2F7] shadow-sm overflow-hidden h-full min-h-0">
-          
+
           {/* Chrome-Style Stationery Tab Bar */}
           <div className="chrome-tab-bar shrink-0">
             {tabs.map((tab) => {
@@ -639,7 +636,7 @@ const Page = () => {
                   title="Double click to rename"
                 >
                   <FileText size={13} className={isActive ? 'text-[#2A5BA7]' : 'text-[#7C8CA6]'} />
-                  
+
                   {isEditing ? (
                     <input
                       type="text"
@@ -685,7 +682,7 @@ const Page = () => {
 
           {/* Inner Notebook Panel Content */}
           <div className="p-3 sm:p-5 flex flex-col flex-1 overflow-hidden min-h-0">
-            
+
             {/* Notebook Header */}
             <div className="flex items-center justify-between pb-2.5 border-b-2 border-dashed border-[#E4EAF2] shrink-0 gap-2 flex-wrap sm:flex-nowrap">
               <div className="flex items-center gap-2">
@@ -693,7 +690,7 @@ const Page = () => {
                   {todayDateStr}
                 </span>
                 <div className="h-3 w-[1px] bg-[#CBD9F2]" />
-                
+
                 {remoteIsTyping && (
                   <span className="text-[10.5px] font-bold text-[#2A5BA7] bg-[#E8F0FE] px-2 py-0.5 rounded-full flex items-center gap-1 animate-pulse">
                     ✏️ Someone is typing...
@@ -712,7 +709,7 @@ const Page = () => {
                   </button>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <button
                   onClick={copyToClipboard}

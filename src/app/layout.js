@@ -16,7 +16,7 @@ const kalam = Kalam({
 export const metadata = {
   title: 'LivePaste',
   description: 'Share text and notes instantly across devices with stationery notebook aesthetics and a 5-digit room code.',
-  keywords: 'livepaste, instant text sharing, notebook UI, stationery sync, real-time pastebin, 5-digit code text transfer',
+  keywords: 'livepaste, instant text sharing, notebook UI, real-time sync, real-time pastebin, 5-digit code text transfer',
   openGraph: {
     title: 'LivePaste',
     description: 'Sync text across devices in seconds using a simple code in a tactile notebook interface.',

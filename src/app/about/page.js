@@ -82,7 +82,7 @@ export default function AboutPage() {
                             </div>
                             <div>
                                 <span className="text-[19px] font-bold text-[#2A5BA7] leading-tight block">LivePaste</span>
-                                <span className="text-[11px] font-semibold text-[#7C8CA6] block">Real-time Stationery Sync</span>
+                                <span className="text-[11px] font-semibold text-[#7C8CA6] block">Real-time Sync</span>
                             </div>
                         </Link>
                     </div>
