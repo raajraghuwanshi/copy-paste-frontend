@@ -44,6 +44,26 @@ body {
   font-family: var(--font-quicksand), 'Quicksand', system-ui, sans-serif;
   color: var(--navy);
   min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.app-viewport {
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  max-height: 100dvh;
+}
+
+/* Prevent iOS Safari auto-zoom on textarea focus by keeping font-size >= 16px */
+.notebook-textarea {
+  font-size: 18px !important;
+}
+
+@media (max-width: 640px) {
+  .notebook-textarea {
+    font-size: 16px !important;
+    line-height: 40px !important;
+  }
 }
 
 .font-handwriting {
